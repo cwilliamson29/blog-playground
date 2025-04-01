@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect, useState } from "react";
 import axios, { CanceledError } from "axios";
+import StopWatch from "./components/stopWatch.tsx";
 
 interface User {
 	id: number;
@@ -57,6 +58,7 @@ function App() {
 		<>
 			{error !== "" && <p className="text-red-500 border border-1 border-red-500 p-5 mb-5">{error}</p>}
 			{loading && "Loading..."}
+			<StopWatch />
 			<ul>
 				{users.map((user: User) => (
 					<div key={user.id} className="flex border border-1 border-gray-700 justify-between">
