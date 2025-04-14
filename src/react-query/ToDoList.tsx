@@ -1,28 +1,22 @@
-import { useEffect, useState } from "react";
-import axios from "axios";
+import useTodos from "./hooks/useTodos.ts";
 
-interface ToDo {
-	id: number;
-	userId: number;
-	title: string;
-	completed: boolean;
-}
 
 function ToDoList() {
-	const [todos, setTodos] = useState<ToDo []>([]);
-	const [error, setError] = useState("");
+	const { isPending, data, error } = useTodos();
 
-	useEffect(() => {
-		axios
-			.get("https://jsonplaceholder.typicode.com/todos")
-			.then((res) => setTodos(res.data))
-			.catch(err => setError(err));
-	}, []);
+	if (error) return <p>{error.message}</p>;
 
-	if (error) return <p>{error}</p>;
-	console.log(todos[0]);
+	if (isPending) return <p>...Loading</p>;
+
+	//console.log(data);
 	return (
-		<div>ToDoList</div>
+		<ul>
+			{data?.map((todo) => (
+				<li key={todo.id}>
+					{todo.title}
+				</li>
+			))}
+		</ul>
 	);
 }
 
