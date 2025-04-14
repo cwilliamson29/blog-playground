@@ -2,6 +2,8 @@ import StopItWatch from "./stopWatch";
 
 function StopWatch() {
 
+	// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+	// @ts-expect-error
 	const stop = new StopItWatch();
 
 	return (
