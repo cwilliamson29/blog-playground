@@ -10,9 +10,20 @@ function TodoForm() {
 		mutationFn: (todo: Todo) => axios
 			.post<Todo>("https://jsonplaceholder.typicode.com/todos", todo)
 			.then((res) => res.data),
+		onMutate: (newTodo) => {
+			queryClient.setQueryData<Todo[]>(["todos"], (todos) => [
+				newTodo,
+				...(todos || [])]);
+		},
 		onSuccess: (savedTodo, newTodo) => {
-			queryClient.setQueryData<Todo[]>(["todos"], (todos) => [savedTodo, ...(todos || [])]);
+			queryClient.setQueryData<Todo[]>(["todos"], (todos) =>
+				todos?.map((todo) =>
+					todo === newTodo ? savedTodo : todo
+				)
+			);
 		}
+		// onError: (error, newTodo) => {
+		// }
 	});
 	const ref = useRef<HTMLInputElement>(null);
 
