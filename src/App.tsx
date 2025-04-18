@@ -11,7 +11,7 @@ function App() {
 		<>
 			<TodoForm />
 			<ToDoList />
-			<Posts />
+			{/*<Posts />*/}
 		</>
 	);
 }
