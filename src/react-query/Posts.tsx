@@ -9,7 +9,6 @@ function Posts() {
 
 	if (isPending) return <p>...Loading</p>;
 
-	//console.log(data);
 	const btn = "p-3 bg-blue-500 text-white font-bold m-2 disabled:bg-gray-500";
 	return (
 		<div>

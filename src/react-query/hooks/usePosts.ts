@@ -25,7 +25,7 @@ const usePosts = (query: PostQuery) => useInfiniteQuery<Post[], Error>({
 			}
 		})
 		.then((res) => res.data),
-	//staleTime: 1 * 60 * 1000
+	staleTime: 1 * 60 * 1000,
 	getNextPageParam: (lastPage, allPages) => {
 		return lastPage.length > 0 ? allPages.length + 1 : undefined;
 	}
